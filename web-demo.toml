@@ -1,0 +1,35 @@
+[[routes]]
+domain = "web-demo.containerlab.io"
+container = "website"
+
+[container.website] 
+git_location = "github.com/containerlab-io/web-demo"
+git_commit = "master"
+wait_for = ["redis.website-sessions", "postgresql.website-db"]
+health_endpoint = "/health"
+    [container.website.resources]
+    cpu = 1.0
+    ram = 500MB
+    replicas = 2
+
+    [container.website.env_vars]
+    MAX_PROCS = 10
+    X_FEATURE_ENABLED = true
+    ENV = "production"
+
+    [container.website.ports]
+    http=10080
+    metrics=19090
+
+[redis.website-sessions]
+    [redis.website-sessions.resources-community-edition]
+    cpu = 1.0
+    ram = 500MB
+
+    [redis.website-sessions.resources-cloud]
+    kind = "t1-medium"
+
+[postgresql.website-db]
+    [postgresql.website-db.resources]
+    cpu = 1.0
+    ram = 500MB
