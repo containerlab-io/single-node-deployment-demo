@@ -8,8 +8,8 @@ git_commit = "master"
 wait_for = ["redis.website-sessions", "postgresql.website-db"]
 health_endpoint = "/health"
     [container.website.resources]
-    cpu = 1.0
-    ram = 500MB
+    cpu = "1.0"
+    ram = "500MB"
     replicas = 2
 
     [container.website.env_vars]
@@ -23,13 +23,13 @@ health_endpoint = "/health"
 
 [redis.website-sessions]
     [redis.website-sessions.resources-community-edition]
-    cpu = 1.0
-    ram = 500MB
+    cpu = "1.0"
+    ram = "500MB"
 
     [redis.website-sessions.resources-cloud]
     kind = "t1-medium"
 
 [postgresql.website-db]
     [postgresql.website-db.resources]
-    cpu = 1.0
-    ram = 500MB
+    cpu = "1.0"
+    ram = "500MB"
